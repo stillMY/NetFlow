@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace必须指向Dao接口 -->
+<mapper namespace="com.springapp.mvc.dao.NetFlowDao">
+
+    <select id="getAllFlow" resultType="com.springapp.mvc.domain.NetFlow">
+        SELECT id as id,
+        class as type,
+        d1,d2,d3,d4,d5,
+        d6,d7,d8,d9,d10,
+        d11,d12,d13,d14,d15,
+        d16,d17,d18,d19
+        from netflow
+    </select>
+
+    <insert id="insertSingleFlow" parameterType="com.springapp.mvc.domain.NetFlow" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO netflow(class,d1,d2,d3,d4,d5,d6,d7,d8,d9,d10,d11,d12,d13,d14,d15,d16,d17,d18,d19)
+        VALUES (#{flow.type},#{flow.d1},#{flow.d2},#{flow.d3},#{flow.d4},#{flow.d5},#{flow.d6},#{flow.d7}
+        ,#{flow.d8},#{flow.d9},#{flow.d10},#{flow.d11},#{flow.d12},#{flow.d13},#{flow.d14},#{flow.d15},#{flow.d16}
+        ,#{flow.d17},#{flow.d18},#{flow.d19})
+    </insert>
+
+    <insert id="insertFlowList" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO netflow(class,d1,d2,d3,d4,d5,d6,d7,d8,d9,d10,d11,d12,d13,d14,d15,d16,d17,d18,d19)
+        VALUES
+        <foreach collection="flowList" item="flow" index="index" separator=",">
+            (#{flow.type},#{flow.d1},#{flow.d2},#{flow.d3},#{flow.d4},#{flow.d5},#{flow.d6},#{flow.d7}
+            ,#{flow.d8},#{flow.d9},#{flow.d10},#{flow.d11},#{flow.d12},#{flow.d13},#{flow.d14},#{flow.d15},#{flow.d16}
+            ,#{flow.d17},#{flow.d18},#{flow.d19})
+        </foreach>
+    </insert>
+
+</mapper>
