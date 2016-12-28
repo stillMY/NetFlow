@@ -1,8 +1,10 @@
 package com.springapp.mvc.controller;
 
+import com.springapp.mvc.domain.Flow;
 import com.springapp.mvc.domain.NetFlow;
 import com.springapp.mvc.service.ClassifyService;
 import com.springapp.mvc.service.NetFlowService;
+import com.springapp.mvc.util.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -29,11 +31,11 @@ public class HelloController {
 
 	@RequestMapping("/task.do")
     public String task(){
-        List<NetFlow> flows = null;//从csv中读取的
-        for(NetFlow flow : flows){
+        List<Flow> flows = classifyService.loadData(Constant.dir);//从csv中读取的
+        for(Flow flow : flows){
             classifyService.classify(flow);
         }
 
-        return null;
+        return "index";
     }
 }

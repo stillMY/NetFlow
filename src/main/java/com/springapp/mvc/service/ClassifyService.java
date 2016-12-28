@@ -1,10 +1,13 @@
 package com.springapp.mvc.service;
 
 import com.springapp.mvc.domain.Classifier;
-import com.springapp.mvc.domain.NetFlow;
+import com.springapp.mvc.domain.Flow;
+import com.springapp.mvc.util.Constant;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.io.FileInputStream;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,13 +18,15 @@ public class ClassifyService {
 
     private Map<String, Classifier> classifiers;
     private Map<String, Integer> thresholds;
+    private long pointer;
+    private long fileLen;
 
     //提供接口，实时显示阈值
     public Map getThreshold() {
         return thresholds;
     }
 
-    public void classify(NetFlow flow) {
+    public void classify(Flow flow) {
 
         for (String key : classifiers.keySet()) {
             Classifier classifier = classifiers.get(key);
@@ -49,6 +54,12 @@ public class ClassifyService {
         //初始时，把分类器加载进来
         classifiers = loadClassifier();
         thresholds = loadThresholds();
+        try {
+
+            FileInputStream inputStream = new FileInputStream(Constant.dir);
+            fileLen = inputStream.available();
+        } catch (Exception e) {
+        }
     }
 
     private Map<String, Classifier> loadClassifier() {
@@ -60,4 +71,10 @@ public class ClassifyService {
 
         return null;
     }
+
+    public List<Flow> loadData(final String dir) {
+        return null;
+    }
+
+
 }

@@ -29,4 +29,8 @@ public class NetFlow {
     private double d17;
     private double d18;
     private double d19;
+
+    public Flow changeToFlow(){
+        return null;
+    }
 }

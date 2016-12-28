@@ -10,10 +10,10 @@ import java.util.List;
 @Data
 public class Classifier {
 
-    private List<NetFlow> out;
-    private List<NetFlow> in;
+    private List<Flow> out;
+    private List<Flow> in;
 
-    public void classify(NetFlow flow) {
+    public void classify(Flow flow) {
 
     }
 }

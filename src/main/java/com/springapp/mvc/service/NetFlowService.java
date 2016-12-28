@@ -29,4 +29,5 @@ public class NetFlowService {
     public int insertFlowList(List<NetFlow> flowList){
         return dao.insertFlowList(flowList);
     }
+
 }
