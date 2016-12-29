@@ -64,9 +64,9 @@ public class SourceLoader  implements ApplicationListener<ContextRefreshedEvent>
                             List<Flow> list = (List<Flow>) future.get();
                             System.out.println("读取到 "+list.size());
                             if(list.size()>0){
-//                                for(Flow flow:list){
-//                                    service.classify(flow);
-//                                }
+                                for(Flow flow:list){
+                                    service.classify(flow);
+                                }
                             }
                         } catch (Exception e) {
                             e.printStackTrace();

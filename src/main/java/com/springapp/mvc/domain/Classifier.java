@@ -2,6 +2,7 @@ package com.springapp.mvc.domain;
 
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,10 +11,8 @@ import java.util.List;
 @Data
 public class Classifier {
 
-    private List<Flow> out;
-    private List<Flow> in;
+    private List<Flow> out = new ArrayList<Flow>();
+    private List<Flow> in = new ArrayList<Flow>();
 
-    public void classify(Flow flow) {
 
-    }
 }

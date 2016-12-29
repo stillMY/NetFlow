@@ -31,7 +31,7 @@ public class HelloController {
 
 	@RequestMapping("/task.do")
     public String task(){
-        List<Flow> flows = classifyService.loadData(Constant.dir);//从csv中读取的
+        List<Flow> flows = classifyService.loadData();//从csv中读取的
         for(Flow flow : flows){
             classifyService.classify(flow);
         }

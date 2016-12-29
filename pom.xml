@@ -13,6 +13,21 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>Tx</groupId>
+            <artifactId>Tx</artifactId>
+            <version>1.2</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/Tx.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>javabuilder</groupId>
+            <artifactId>javabuilder</artifactId>
+            <version>1.1</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/javabuilder.jar</systemPath>
+        </dependency>
 
         <dependency>
             <groupId>org.mybatis</groupId>
@@ -160,5 +175,15 @@
                 </configuration>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <targetPath>src/main/webapp/WEB-INF/lib</targetPath>
+                <directory>src/main/webapp/WEB-INF/lib</directory>
+                <includes>
+                    <include>**/Tx.jar</include>
+                    <include>**/javabuilder.jar</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
 </project>
