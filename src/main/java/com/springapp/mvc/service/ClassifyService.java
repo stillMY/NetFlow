@@ -1,12 +1,19 @@
 package com.springapp.mvc.service;
 
+import com.springapp.mvc.dao.NetFlowDao;
 import com.springapp.mvc.domain.Classifier;
 import com.springapp.mvc.domain.Flow;
+import com.springapp.mvc.domain.NetFlow;
 import com.springapp.mvc.util.Constant;
+import com.springapp.mvc.util.NameUtil;
+import com.springapp.mvc.util.ThresholdUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.io.FileInputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,9 +24,9 @@ import java.util.Map;
 public class ClassifyService {
 
     private Map<String, Classifier> classifiers;
-    private Map<String, Integer> thresholds;
-    private long pointer;
-    private long fileLen;
+    private Map<String, Double> thresholds;
+    @Autowired
+    private NetFlowDao dao;
 
     //提供接口，实时显示阈值
     public Map getThreshold() {
@@ -54,22 +61,28 @@ public class ClassifyService {
         //初始时，把分类器加载进来
         classifiers = loadClassifier();
         thresholds = loadThresholds();
-        try {
-
-            FileInputStream inputStream = new FileInputStream(Constant.dir);
-            fileLen = inputStream.available();
-        } catch (Exception e) {
-        }
     }
 
+    //从数据库读取所有流量
     private Map<String, Classifier> loadClassifier() {
-        return null;
+        List<NetFlow> netFlows = dao.getAllFlow();
 
+        Map<String,Classifier> map = new HashMap<String, Classifier>();
+        Classifier classifier = new Classifier();
+        for(NetFlow netFlow:netFlows){
+            classifier.getIn().add(netFlow.changeToFlow());
+        }
+        map.put(NameUtil.getName(),classifier);
+        return map;
     }
 
-    private Map<String, Integer> loadThresholds() {
-
-        return null;
+    //计算所有分类器的阈值
+    private Map<String, Double> loadThresholds() {
+        Map<String,Double> map = new HashMap<String, Double>();
+        for(String key : classifiers.keySet()){
+            map.put(key, ThresholdUtil.getThreshold(classifiers.get(key).getIn()));
+        }
+        return map;
     }
 
     public List<Flow> loadData(final String dir) {

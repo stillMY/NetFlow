@@ -56,7 +56,7 @@ public class SourceLoader  implements ApplicationListener<ContextRefreshedEvent>
                                 }
                                 return list;
                             }
-                        }, 3, TimeUnit.SECONDS);
+                        }, 5, TimeUnit.SECONDS);
 
                         while (!future.isDone()){}
 

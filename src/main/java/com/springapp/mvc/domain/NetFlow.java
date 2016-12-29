@@ -31,6 +31,29 @@ public class NetFlow {
     private double d19;
 
     public Flow changeToFlow(){
-        return null;
+        Flow flow = new Flow();
+        flow.setId(this.id);
+        flow.setType(this.type);
+        double[] d= new double[19];
+        d[0] = d1;
+        d[1] = d2;
+        d[2] = d3;
+        d[3] = d4;
+        d[4] = d5;
+        d[5] = d6;
+        d[6] = d7;
+        d[7] = d8;
+        d[8] = d9;
+        d[9] = d10;
+        d[10] = d11;
+        d[11] = d12;
+        d[12] = d13;
+        d[13] = d14;
+        d[14] = d15;
+        d[15] = d16;
+        d[16] = d17;
+        d[17] = d18;
+        d[18] = d19;
+        return flow;
     }
 }
