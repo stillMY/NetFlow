@@ -35,8 +35,9 @@ public class ClassifyService {
     }
 
     public void classify(Flow flow) {
-
-        for (String key : classifiers.keySet()) {
+        HashSet<String> keySet = new HashSet();
+        keySet.addAll(classifiers.keySet());
+        for (String key : keySet) {
             Classifier classifier = classifiers.get(key);
             Map<String, Double> result = ClassifyUtil.classify(trains, flow);//进行分类
             List<String> com = compare(key, result);
@@ -61,17 +62,19 @@ public class ClassifyService {
                     if(flow.getType().equals(type)){
                         count++;
                     }
-                    Collections.copy(newClassifier.getIn(), classifier.getIn());
-                    Collections.copy(newClassifier.getOut(), classifier.getOut());
-                    classifiers.put(NameUtil.getName(), newClassifier);
+                    newClassifier.getIn().addAll(classifier.getIn());
+                    newClassifier.getIn().add(flow);
+                    newClassifier.getOut().addAll(classifier.getOut());
+                    String classfierName = NameUtil.getName();
+                    classifiers.put(classfierName, newClassifier);
+                    thresholds.put(classfierName,thresholds.get(key));
                 }
                 classifiers.remove(key);
+                thresholds.remove(key);
             }
-            System.out.println("分类器out数量：" + classifiers.get(key).getOut().size());
-            System.out.println("分类器in数量：" + classifiers.get(key).getIn().size());
         }
+
         System.out.println("分类器数量：" + classifiers.size());
-        System.out.println(count);
     }
 
     private List<String> compare(String classfierId, Map<String, Double> result) {
@@ -129,7 +132,7 @@ public class ClassifyService {
 
     public List<Flow> loadData() {
         try {
-            FileInputStream fileInputStream = new FileInputStream(new File(Constant.dir));
+            FileInputStream fileInputStream = new FileInputStream(new File(Constant.TRAINFILE));
             BufferedReader reader = new BufferedReader(new InputStreamReader(fileInputStream));
             String line;
             List<Flow> list = new ArrayList<Flow>();

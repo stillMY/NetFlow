@@ -14,5 +14,5 @@ public interface NetFlowDao {
 
     int insertSingleFlow(NetFlow flow);
 
-    int insertFlowList(List<NetFlow> flowList);
+    int insertNetFlowList(List<NetFlow> flowList);
 }

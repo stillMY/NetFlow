@@ -38,7 +38,7 @@ public class SourceLoader  implements ApplicationListener<ContextRefreshedEvent>
                             public List<Flow> call() {
                                 List<Flow> list = new ArrayList<Flow>();
                                 try {
-                                    RandomAccessFile randomAccessFile = new RandomAccessFile(Constant.dir, "r");
+                                    RandomAccessFile randomAccessFile = new RandomAccessFile(Constant.TESTFILE, "r");
 
                                     while (fileLen != randomAccessFile.length()) {
                                         randomAccessFile.seek(pointer);

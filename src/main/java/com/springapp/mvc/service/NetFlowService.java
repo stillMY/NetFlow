@@ -1,10 +1,12 @@
 package com.springapp.mvc.service;
 
 import com.springapp.mvc.dao.NetFlowDao;
+import com.springapp.mvc.domain.Flow;
 import com.springapp.mvc.domain.NetFlow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,12 +24,20 @@ public class NetFlowService {
         return dao.getAllFlow();
     }
     //插入单个流
-    public int insertSingleFlow(NetFlow flow){
-        return dao.insertSingleFlow(flow);
+    public int insertSingleFlow(NetFlow netFlow){
+        return dao.insertSingleFlow(netFlow);
     }
     //插入一个list
-    public int insertFlowList(List<NetFlow> flowList){
-        return dao.insertFlowList(flowList);
+    public int insertNetFlowList(List<NetFlow> netFlows){
+        return dao.insertNetFlowList(netFlows);
+    }
+
+    public int insertFlowList(List<Flow> flows){
+        List<NetFlow> list = new ArrayList<NetFlow>();
+        for (Flow flow:flows){
+            list.add(flow.changeToNetFlow());
+        }
+        return dao.insertNetFlowList(list);
     }
 
 }
