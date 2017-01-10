@@ -2,6 +2,8 @@ package com.springapp.mvc.domain;
 
 import lombok.Data;
 
+import java.util.Map;
+
 /**
  * Created by Administrator on 2016/12/28.
  */
@@ -11,6 +13,10 @@ public class Flow {
     private int id;
     private double[] d;
     private String type;
+    private String cType;
+    private Map<String,String> typeMap;
+    private boolean isDiff;
+
 
     public NetFlow changeToNetFlow(){
         NetFlow netFlow = new NetFlow();

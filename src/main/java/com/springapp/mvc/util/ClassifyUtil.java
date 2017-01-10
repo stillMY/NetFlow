@@ -46,7 +46,9 @@ public class ClassifyUtil {
         double[] threshold = new double[Constant.NCLASS];
         MWNumericArray input = new MWNumericArray(trains, MWClassID.DOUBLE);
         try {
-            Tx tx = new Tx();
+            if(tx == null) {
+                tx = new Tx();
+            }
             Object[] result = tx.getTh(1, Constant.NCLASS, Constant.NNN, Constant.FNUM, input);
             threshold = ((MWNumericArray) result[0]).getDoubleData();
         } catch (MWException e) {
@@ -68,4 +70,11 @@ public class ClassifyUtil {
         return dd;
     }
 
+    public static Map<String, Double> getThreshold2() {
+        Map<String,Double> map = new HashMap();
+        map.put("WWW",0.9952);
+        map.put("FTP-CONTROL",0.9466);
+        map.put("DATABASE",0.9935);
+        return map;
+    }
 }
