@@ -27,7 +27,6 @@ public class ClassifyService {
     private List<Flow> trains;
     private String[] CLASS = {"WWW", "FTP-CONTROL", "DATABASE"};
     private int cNum = 10;
-    private int count;
     @Autowired
     private NetFlowDao dao;
 
@@ -41,25 +40,20 @@ public class ClassifyService {
         keySet.addAll(classifiers.keySet());
         for (String key : keySet) {
             Classifier classifier = classifiers.get(key);
-            Map<String, Double> result = ClassifyUtil.classify(classifier.getIn(), flow);//进行分类
+            Map<String, Double> result = ClassifyUtil.getXCo(classifier.getIn(), flow);//进行分类
             List<String> com = compare(key, result);
             if (com.size() == 0) {
                 //out
                 classifier.getOut().add(flow);
             } else if (com.size() == 1) {
-                //如果是分出一个类
-                if (flow.getType().equals(com.get(0))) {
-                    count++;
-                }
                 flow.setDiff(false);
 
                 Map<String, String> map = new HashMap<String, String>();
                 map.put(key, com.get(0));
                 flow.setTypeMap(map);
 
-                classifier.getIn().add(flow);
-//                thresholds.put(key,ClassifyUtil.getThreshold(classifier.getIn()));
-                thresholds.put(key, ClassifyUtil.getThreshold2());
+                classifier.getIn().get(com.get(0)).add(flow);
+//                thresholds.put(key, ClassifyUtil.getThreshold(classifier.getIn()));//更新阈值
             } else if (com.size() > 1) {
                 //分出多个类
                 //1.先把原分类器取出来
@@ -67,32 +61,35 @@ public class ClassifyService {
                 //3.删除原来分类器，加入新的分类器
                 Map<String, String> map = new HashMap<String, String>();
                 List<String> names = new ArrayList<String>();
+                flow.setDiff(true);
                 for (String type : com) {
                     Classifier newClassifier = new Classifier();
                     String classfierName = NameUtil.getName();
                     map.put(classfierName, type);
 
-                    newClassifier.getIn().addAll(classifier.getIn());
-                    newClassifier.getIn().add(flow);
+                    newClassifier.getIn().putAll(classifier.getIn());
+                    newClassifier.getIn().get(type).add(flow);
                     newClassifier.getOut().addAll(classifier.getOut());
 
                     names.add(classfierName);
 
                     classifiers.put(classfierName, newClassifier);
-//                    thresholds.put(classfierName,ClassifyUtil.getThreshold(newClassifier.getIn()));
-                    thresholds.put(classfierName, ClassifyUtil.getThreshold2());
+                    thresholds.put(classfierName, ClassifyUtil.getThreshold(newClassifier.getIn()));
                 }
                 flow.setTypeMap(map);
 
                 //对原来的流量，更改他们的分类器名
-                for (int i = Constant.NCLASS * Constant.NNN; i < classifier.getIn().size(); i++) {
-                    Flow f = classifier.getIn().get(i);
-                    if (f.isDiff()) {
-                        if (f.getTypeMap().containsKey(key)) {
-                            String type = f.getTypeMap().get(key);
-                            for (String name : names) {
-                                f.getTypeMap().remove(key);
-                                f.getTypeMap().put(name,type);
+                for (String type : classifier.getIn().keySet()) {
+                    List<Flow> flows = classifier.getIn().get(type);
+                    for (int i = Constant.NNN; i < flows.size(); i++) {
+                        Flow f = flows.get(i);
+                        if (f.isDiff()) {
+                            if (f.getTypeMap().containsKey(key)) {
+                                String type1 = f.getTypeMap().get(key);
+                                for (String name : names) {
+                                    f.getTypeMap().remove(key);
+                                    f.getTypeMap().put(name, type1);
+                                }
                             }
                         }
                     }
@@ -104,6 +101,7 @@ public class ClassifyService {
         }
 
         //如果超过10个分类器，减枝
+        //有分歧最大的那个流，如果分类器 分类错误 删去
         if (classifiers.size() >= cNum) {
             while (classifiers.size() > 1) {
                 List<Flow> diffs = getAllDiff();
@@ -117,8 +115,8 @@ public class ClassifyService {
                     }
                 }
                 sel.setDiff(false);
-                for (String key : flow.getTypeMap().keySet()) {
-                    if (!flow.getType().equals(flow.getTypeMap().get(key))) {
+                for (String key : sel.getTypeMap().keySet()) {
+                    if (!sel.getType().equals(sel.getTypeMap().get(key))) {
                         classifiers.remove(key);
                     }
                 }
@@ -130,10 +128,15 @@ public class ClassifyService {
 
     private List<Flow> getAllDiff() {
         List<Flow> list = new ArrayList<Flow>();
-        List<Flow> in = classifiers.get("Classifier-1").getIn();
-        for (int i = Constant.NCLASS * Constant.NNN; i < in.size(); i++) {
-            if (in.get(i).isDiff()) {
-                list.add(in.get(i));
+
+        Map<String, List<Flow>> in = classifiers.get(classifiers.keySet().toArray()[0]).getIn();
+
+        for (String key : in.keySet()) {
+            List<Flow> flows = in.get(key);
+            for (int i = Constant.NNN; i < flows.size(); i++) {
+                if(flows.get(i).isDiff()){
+                    list.add(flows.get(i));
+                }
             }
         }
 
@@ -151,8 +154,10 @@ public class ClassifyService {
                     d++;
                 }
             }
-
-            double a = -d * Math.log(d);
+            double a = 0;
+            if(d>0){
+                a = -d * Math.log(d);
+            }
             sum += a;
         }
 
@@ -175,9 +180,6 @@ public class ClassifyService {
         //初始时，把分类器加载进来
         classifiers = loadClassifier();
         thresholds = loadThresholds();
-        for (String key : classifiers.keySet()) {
-            trains = classifiers.get(key).getIn();
-        }
     }
 
     //从数据库读取所有流量
@@ -187,7 +189,14 @@ public class ClassifyService {
         Map<String, Classifier> map = new HashMap<String, Classifier>();
         Classifier classifier = new Classifier();
         for (Flow flow : flows) {
-            classifier.getIn().add(flow);
+            List<Flow> list = classifier.getIn().get(flow.getType());
+
+            if (list == null) {
+                list = new ArrayList<Flow>();
+            }
+
+            list.add(flow);
+            classifier.getIn().put(flow.getType(), list);
         }
         map.put(NameUtil.getName(), classifier);
         return map;
@@ -207,8 +216,7 @@ public class ClassifyService {
     private Map<String, Map<String, Double>> loadThresholds() {
         Map<String, Map<String, Double>> map = new HashMap<String, Map<String, Double>>();
         for (String key : classifiers.keySet()) {
-//            map.put(key, ClassifyUtil.getThreshold(classifiers.get(key).getIn()));
-            map.put(key, ClassifyUtil.getThreshold2());
+            map.put(key, ClassifyUtil.getThreshold(classifiers.get(key).getIn()));
         }
         return map;
     }

@@ -10,56 +10,68 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 /**
- * Created by Administrator on 2016/12/29.
+ * Created by Administrator on 2017/1/12.
  */
 public class ClassifyUtil {
-    private static String[] CLASS = {"WWW", "FTP-CONTROL", "DATABASE"};
-    private static Tx tx = null;
-    public static Map<String, Double> classify(List<Flow> trains, Flow flow) {
-        double[] d = flow.getD();
-        try {
-            if(tx == null) {
+
+
+    private static Tx tx;
+
+    private static Tx getInstance() {
+        if (tx == null) {
+            try {
                 tx = new Tx();
+            } catch (MWException e) {
+                e.printStackTrace();
             }
-            Object[] result = tx.getXCo(1,d, Constant.NCLASS,getDoubleArr(trains),Constant.NNN,Constant.FNUM);
-            double[] featureVec = ((MWNumericArray) result[0]).getDoubleData();
-            Map<String, Double> map = new HashMap<String, Double>();
-            for (int i = 0; i < Constant.NCLASS; i++) {
-                map.put(CLASS[i], featureVec[i]);
-            }
-            return map;
-        } catch (MWException e) {
-            e.printStackTrace();
-            return null;
         }
+        return tx;
     }
 
     /**
-     * 获取所有类的阈值
-     * @param flows
-     * @return
-     * @TODO
+     * 获取与其他类的互相关熵
      */
-    public static Map<String, Double> getThreshold(List<Flow> flows) {
-        double[][] trains = getDoubleArr(flows);
-        double[] threshold = new double[Constant.NCLASS];
-        MWNumericArray input = new MWNumericArray(trains, MWClassID.DOUBLE);
-        try {
-            if(tx == null) {
-                tx = new Tx();
-            }
-            Object[] result = tx.getTh(1, Constant.NCLASS, Constant.NNN, Constant.FNUM, input);
-            threshold = ((MWNumericArray) result[0]).getDoubleData();
-        } catch (MWException e) {
-            e.printStackTrace();
-        }
+    public static Map<String, Double> getXCo(Map<String, List<Flow>> data, Flow flow) {
+        tx = getInstance();
         Map<String, Double> map = new HashMap<String, Double>();
-        for (int i = 0; i < Constant.NCLASS; i++) {
-            map.put(CLASS[i], threshold[i]);
+        for (String key : data.keySet()) {
+            List<Flow> flows = data.get(key);
+            try {
+                Object[] result = tx.getFeature(1, flow.getD(), getDoubleArr(flows), flows.size(), Constant.FNUM);
+                map.put(key, Double.parseDouble(result[0].toString()));
+            } catch (MWException e) {
+                e.printStackTrace();
+            }
         }
         return map;
     }
+
+    /**
+     * 获取阈值
+     * 对每个类型进行遍历
+     *
+     * @param data
+     * @return
+     */
+    public static Map<String, Double> getThreshold(Map<String, List<Flow>> data) {
+        tx = getInstance();
+        Map<String, Double> thresholds = new HashMap<String, Double>();
+        for (String key : data.keySet()) {
+            List<Flow> flows = data.get(key);
+            double[][] d = getDoubleArr(flows);
+            MWNumericArray input = new MWNumericArray(d, MWClassID.DOUBLE);
+            try {
+                Object[] result = tx.getThreshold(1, flows.size(), Constant.FNUM, input);
+                thresholds.put(key, Double.parseDouble(result[0].toString()));
+            } catch (MWException e) {
+                e.printStackTrace();
+            }
+        }
+        return thresholds;
+    }
+
 
     private static double[][] getDoubleArr(List<Flow> flows) {
         double[][] dd = new double[flows.size()][];
@@ -68,13 +80,5 @@ public class ClassifyUtil {
             dd[i] = d;
         }
         return dd;
-    }
-
-    public static Map<String, Double> getThreshold2() {
-        Map<String,Double> map = new HashMap();
-        map.put("WWW",0.9952);
-        map.put("FTP-CONTROL",0.9466);
-        map.put("DATABASE",0.9935);
-        return map;
     }
 }

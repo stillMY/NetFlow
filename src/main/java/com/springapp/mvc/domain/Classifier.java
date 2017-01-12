@@ -3,7 +3,9 @@ package com.springapp.mvc.domain;
 import lombok.Data;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2016/12/27.
@@ -12,7 +14,7 @@ import java.util.List;
 public class Classifier {
 
     private List<Flow> out = new ArrayList<Flow>();
-    private List<Flow> in = new ArrayList<Flow>();
+    private Map<String,List<Flow>> in = new HashMap<String, List<Flow>>();
 
 
 }
