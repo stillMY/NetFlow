@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
@@ -31,7 +30,7 @@ public class HelloController {
 
 	@RequestMapping("/task.do")
     public String task(){
-        List<Flow> flows = classifyService.loadData();//从csv中读取的
+        List<Flow> flows = classifyService.loadData(Constant.TRAINFILE);//从csv中读取的
         for(Flow flow : flows){
             classifyService.classify(flow);
         }

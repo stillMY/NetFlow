@@ -72,6 +72,17 @@ public class ClassifyUtil {
         return thresholds;
     }
 
+    public static Double getThreshold(List<Flow> data) {
+        double[][] d = getDoubleArr(data);
+        MWNumericArray input = new MWNumericArray(d, MWClassID.DOUBLE);
+        try {
+            Object[] result = tx.getThreshold(1, data.size(), Constant.FNUM, input);
+            return Double.parseDouble(result[0].toString());
+        } catch (MWException e) {
+            e.printStackTrace();
+        }
+        return 0.0;
+    }
 
     private static double[][] getDoubleArr(List<Flow> flows) {
         double[][] dd = new double[flows.size()][];
