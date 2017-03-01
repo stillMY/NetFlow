@@ -34,7 +34,9 @@ public class ClassifyService {
     public Map getThreshold() {
         return thresholds;
     }
+
     int num = 0;
+
     public void classify(Flow flow) {
         num++;
         if (totalNum.get(flow.getType()) == null) {
@@ -48,7 +50,7 @@ public class ClassifyService {
 
         boolean flag = false;
 
-            for (String key : keySet) {
+        for (String key : keySet) {
             Classifier classifier = classifiers.get(key);
             Map<String, Double> result = ClassifyUtil.getXCo(classifier.getIn(), flow);//进行分类
             List<String> com = compare(key, result);
@@ -58,6 +60,9 @@ public class ClassifyService {
 //                if (!flow.getType().equals(CLASS[0]) && !flow.getType().equals(CLASS[1]) && !flow.getType().equals(CLASS[2])) {
 //                    rightNum++;
 //                }
+                if (Constant.Ac == true && num % 100 == 0) {
+                    thresholds.put(key, ClassifyUtil.getThreshold(classifier.getIn()));//更新阈值
+                }
             } else if (com.size() == 1) {
                 flow.setDiff(false);
 
@@ -75,7 +80,7 @@ public class ClassifyService {
                 flow.setTypeMap(map);
 
                 classifier.getIn().get(com.get(0)).add(flow);
-                if (num % 50 == 0) {
+                if (num % 100 == 0 && Constant.Ac==true) {
                     thresholds.put(key, ClassifyUtil.getThreshold(classifier.getIn()));//更新阈值
                 }
 
@@ -99,7 +104,7 @@ public class ClassifyService {
                     names.add(classfierName);
 
                     classifiers.put(classfierName, newClassifier);
-                    if (num % 50 == 0) {
+                    if (num % 100 == 0 && Constant.Ac == true) {
                         thresholds.put(classfierName, ClassifyUtil.getThreshold(classifier.getIn()));//更新阈值
 //                    }
 //                    if (num % 50 ==0) {
@@ -217,8 +222,8 @@ public class ClassifyService {
     }
 
 
-    @PostConstruct
-    private void init() {
+//    @PostConstruct
+    public void init() {
         //初始时，把分类器加载进来
         classifiers = loadClassifier();
         thresholds = loadThresholds();
@@ -334,14 +339,16 @@ public class ClassifyService {
     private void cal(Classifier classifier) {
         Map<String, Integer> m1 = new HashMap<String, Integer>();
         for (Flow flow : classifier.getOut()) {
-            addMap(m1, flow.getType());
+            if (flow.getTypeMap().size() == 0) {
+                addMap(m1, flow.getType());
+            }
         }
         Map<String, Integer> m2 = new HashMap<String, Integer>();
         for (String key : classifier.getIn().keySet()) {
             List list = classifier.getIn().get(key);
             for (int i = Constant.TRAINNUM; i < list.size(); i++) {
                 Flow flow = (Flow) list.get(i);
-                if (flow.getType().equals(key)) {
+                if (flow.getType().equals(key) && flow.getTypeMap().size() == 0) {
                     addMap(m2, key);
                     addMap(m1, key);
                 }
@@ -389,17 +396,17 @@ public class ClassifyService {
         int total = 0;
         int right1 = 0;
         try {
-            FileOutputStream outputStream = new FileOutputStream("c:/result.txt",true);
-            outputStream.write((Constant.TRAINNUM+"\r\n").getBytes());
+            FileOutputStream outputStream = new FileOutputStream("c:/result.txt", true);
+            outputStream.write((Constant.TRAINNUM + "\r\n").getBytes());
             for (String key : m1.keySet()) {
                 int right = m2.get(key) == null ? 0 : m2.get(key);
                 right1 += right;
                 total += m1.get(key);
 //                System.out.println(key + ":" + right * 1.00 / m1.get(key));
-                String s = key + ":" + right * 1.00 / m1.get(key)+"\r\n";
+                String s = key + ":" + right * 1.00 / m1.get(key) + "\r\n";
                 outputStream.write(s.getBytes());
             }
-            outputStream.write(("总准确率：" + right1 * 1.00 / total+"\r\n").getBytes());
+            outputStream.write(("总准确率：" + right1 * 1.00 / total + "\r\n").getBytes());
             outputStream.flush();
             outputStream.close();
         } catch (FileNotFoundException e) {

@@ -27,7 +27,7 @@ var TableManaged = function () {
                 "iDisplayLength": 5,
                 "sPaginationType": "bootstrap",
                 "oLanguage": {
-                    "sLengthMenu": "_MENU_ records",
+                    //"sLengthMenu": "_MENU_ records",
                     "oPaginate": {
                         "sPrevious": "Prev",
                         "sNext": "Next"
@@ -59,8 +59,8 @@ var TableManaged = function () {
                  $(this).parents('tr').toggleClass("active");
             });
 
-            jQuery('#sample_1_wrapper .dataTables_filter input').addClass("form-control input-medium"); // modify table search input
-            jQuery('#sample_1_wrapper .dataTables_length select').addClass("form-control input-xsmall"); // modify table per page dropdown
+            //jQuery('#sample_1_wrapper .dataTables_filter input').addClass("form-control input-medium"); // modify table search input
+            //jQuery('#sample_1_wrapper .dataTables_length select').addClass("form-control input-xsmall"); // modify table per page dropdown
             //jQuery('#sample_1_wrapper .dataTables_length select').select2(); // initialize select2 dropdown
 
             // begin second table

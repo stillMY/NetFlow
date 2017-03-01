@@ -15,8 +15,9 @@ public class Constant {
     public static final int NNN = 600;
     public static final double FNUM = 19.0;
 
-    public static int TRAINNUM = 100;
+    public static int TRAINNUM = 800;
     public static final int TEST_START = 1300;
     public static final int TEST_END = 1500;
     public static boolean done = false;
+    public static boolean Ac = false;
 }

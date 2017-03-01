@@ -7,10 +7,12 @@ var TableAdvanced = function () {
         {
             var aData = oTable.fnGetData( nTr );
             var sOut = '<table>';
-            sOut += '<tr><td>Platform(s):</td><td>'+aData[2]+'</td></tr>';
-            sOut += '<tr><td>Engine version:</td><td>'+aData[3]+'</td></tr>';
-            sOut += '<tr><td>CSS grade:</td><td>'+aData[4]+'</td></tr>';
-            sOut += '<tr><td>Others:</td><td>Could provide a link here</td></tr>';
+            sOut += '<tr><td>Arrival Time: </td><td>'+'Feb 23, 2017 15:11:03.088224000'+'</td></tr>';
+            sOut += '<tr><td>Source Port: </td><td>'+80+'</td></tr>';
+            sOut += '<tr><td>Destination Port: </td><td>'+55618+'</td></tr>';
+            sOut += '<tr><td>Sequence number: </td><td>1</td></tr>';
+            sOut += '<tr><td>Next sequence number: </td><td>82</td></tr>';
+            sOut += '<tr><td>Acknowledgment number: </td><td>1</td></tr>';
             sOut += '</table>';
              
             return sOut;
@@ -47,9 +49,9 @@ var TableAdvanced = function () {
             "iDisplayLength": 10,
         });
 
-        jQuery('#sample_1_wrapper .dataTables_filter input').addClass("form-control input-small"); // modify table search input
-        jQuery('#sample_1_wrapper .dataTables_length select').addClass("form-control input-small"); // modify table per page dropdown
-        jQuery('#sample_1_wrapper .dataTables_length select').select2(); // initialize select2 dropdown
+        //jQuery('#sample_1_wrapper .dataTables_filter input').addClass("form-control input-small"); // modify table search input
+        //jQuery('#sample_1_wrapper .dataTables_length select').addClass("form-control input-small"); // modify table per page dropdown
+        //jQuery('#sample_1_wrapper .dataTables_length select').select2(); // initialize select2 dropdown
          
         /* Add event listener for opening and closing details
          * Note that the indicator for showing which row is open is not controlled by DataTables,

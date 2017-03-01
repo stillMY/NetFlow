@@ -80,12 +80,14 @@ public class SourceLoader implements ApplicationListener<ContextRefreshedEvent> 
                             if (list.size() > 0) {
                                 int c = 0;
 //                                for(int i=0;i<=700;i+=100){
-//                                    Constant.TRAINNUM += i;
+//                                    ClassifyService service = new ClassifyService();
+//                                    service.init();
+//                                    Constant.TRAINNUM += 100;
                                     for (Flow flow : list) {
                                         service.classify(flow);
                                         System.out.println("数据集"+Constant.TRAINNUM+" 第"+ c++ +"条");
                                     }
-                                    service.saveResult();
+//                                    service.saveResult();
 //                                }
                             }
                             Constant.done = true;
@@ -95,7 +97,7 @@ public class SourceLoader implements ApplicationListener<ContextRefreshedEvent> 
 
                     }
 //                }
-            }).start();
+            });
         }
     }
 
