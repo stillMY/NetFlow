@@ -1,5 +1,6 @@
 package com.springapp.mvc.dao;
 
+import com.springapp.mvc.domain.Flow;
 import com.springapp.mvc.domain.NetFlow;
 import com.springapp.mvc.util.MyBatisRepository;
 
@@ -15,4 +16,8 @@ public interface NetFlowDao {
     int insertSingleFlow(NetFlow flow);
 
     int insertNetFlowList(List<NetFlow> flowList);
+
+    void saveClassifierIn(String key, List<Flow> flows);
+
+    void saveThreshold(String key, Double aDouble);
 }

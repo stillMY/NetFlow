@@ -17,4 +17,7 @@ public class Classifier {
     private Map<String,List<Flow>> in = new HashMap<String, List<Flow>>();
 
 
+    public String getName() {
+        return null;
+    }
 }

@@ -11,7 +11,7 @@
         d6,d7,d8,d9,d10,
         d11,d12,d13,d14,d15,
         d16,d17,d18,d19
-        from netflow
+        from netflow limit 231
     </select>
 
     <insert id="insertSingleFlow" parameterType="com.springapp.mvc.domain.NetFlow" useGeneratedKeys="true" keyProperty="id">

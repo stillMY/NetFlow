@@ -9,9 +9,6 @@
                         http://www.springframework.org/schema/context/spring-context-3.1.xsd
                         http://www.springframework.org/schema/mvc
                         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
-    <!--&lt;!&ndash; 自动扫描 &ndash;&gt;-->
-    <!--<context:annotation-config/>-->
-    <!--<context:component-scan base-package="com.springapp.mvc" />-->
 
     <!-- 引入配置文件 -->
     <bean id="propertyConfigurer"

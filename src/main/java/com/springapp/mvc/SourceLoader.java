@@ -87,7 +87,7 @@ public class SourceLoader implements ApplicationListener<ContextRefreshedEvent> 
                                         service.classify(flow);
                                         System.out.println("数据集"+Constant.TRAINNUM+" 第"+ c++ +"条");
                                     }
-//                                    service.saveResult();
+                                    service.saveResult();
 //                                }
                             }
                             Constant.done = true;

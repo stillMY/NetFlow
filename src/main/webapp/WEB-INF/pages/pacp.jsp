@@ -28,10 +28,10 @@
 
 </head>
 <body>
-<div class="col-md-6 col-sm-6">
+<div class="col-md-13 col-sm-13">
     <div class="portlet box blue">
         <div class="portlet-title">
-            <div class="caption"><i class="fa fa-comments"></i>数据流</div>
+            <div class="caption"><i class="fa fa-comments"></i>包详细信息</div>
         </div>
         <div class="portlet-body">
                 <table class="table table-striped table-bordered table-hover" id="sample_1">
@@ -102,6 +102,38 @@
                         <td>74</td>
                         <td>HTTP/1.1 200 OK  (text/plain)</td>
                     </tr>
+                    <tr>
+                        <td>26</td>
+                        <td>HewlettP_5d:ba:a2</td>
+                        <td>Tp-LinkT_7a:8c:0e</td>
+                        <td>ARP</td>
+                        <td>42</td>
+                        <td>192.168.1.88 is at e8:39:35:5d:ba:a2</td>
+                    </tr>
+                    <tr>
+                        <td>27</td>
+                        <td>59.111.160.195</td>
+                        <td>192.168.1.88</td>
+                        <td>HTTP</td>
+                        <td>74</td>
+                        <td>HTTP/1.1 200 OK  (text/plain)</td>
+                    </tr>
+                    <tr>
+                        <td>26</td>
+                        <td>HewlettP_5d:ba:a2</td>
+                        <td>Tp-LinkT_7a:8c:0e</td>
+                        <td>ARP</td>
+                        <td>42</td>
+                        <td>192.168.1.88 is at e8:39:35:5d:ba:a2</td>
+                    </tr>
+                    <tr>
+                        <td>27</td>
+                        <td>59.111.160.195</td>
+                        <td>192.168.1.88</td>
+                        <td>HTTP</td>
+                        <td>74</td>
+                        <td>HTTP/1.1 200 OK  (text/plain)</td>
+                    </tr>
                     </tbody>
                 </table>
         </div>
@@ -119,7 +151,7 @@
 <script src="assets/plugins/jquery.cookie.min.js" type="text/javascript"></script>
 <script src="assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript" ></script>
 <script type="text/javascript" src="assets/plugins/select2/select2.min.js"></script>
-<script type="text/javascript" src="assets/plugins/data-tables/jquery.dataTables.min.js"></script>
+<%--<script type="text/javascript" src="assets/plugins/data-tables/jquery.dataTables.min.js"></script>--%>
 <script type="text/javascript" src="assets/plugins/data-tables/DT_bootstrap.js"></script>
 <script src="assets/scripts/app.js"></script>
 <script src="assets/scripts/table-advanced.js"></script>

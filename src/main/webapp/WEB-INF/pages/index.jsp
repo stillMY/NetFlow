@@ -12,14 +12,14 @@
     <link href="assets/css/style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-<div class="col-md-12 col-sm-12">
+<div class="col-md-13 col-sm-13">
     <div class="portlet box blue">
         <div class="portlet-title">
-            <div class="caption"><i class="fa fa-comments"></i>数据流</div>
+            <div class="caption"><i class="fa fa-comments"></i>流特征信息</div>
         </div>
         <div class="portlet-body">
             <div class="table-responsive">
-                <table class="table table-striped table-hover">
+                <table class="table table-striped table-hover" id="sample_editable_1">
                     <thead>
                     <tr>
                         <th>id</th>

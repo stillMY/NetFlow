@@ -80,7 +80,7 @@ public class ClassifyService {
                 flow.setTypeMap(map);
 
                 classifier.getIn().get(com.get(0)).add(flow);
-                if (num % 100 == 0 && Constant.Ac==true) {
+                if (num % 100 == 0 && Constant.Ac == true) {
                     thresholds.put(key, ClassifyUtil.getThreshold(classifier.getIn()));//更新阈值
                 }
 
@@ -232,17 +232,17 @@ public class ClassifyService {
             public void run() {
                 int c = 0;
                 while (true) {
-                    if (totalNum.size() > 0) {
-                        c += 5;
-                        System.out.println("第" + c + "秒");
+                    if (num % 100 == 0 && num != c) {
+                        c = num;
+                        System.out.println("第" + num + "个");
                         print();
                     }
 
-                    try {
-                        Thread.sleep(5000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+//                    try {
+//                        Thread.sleep(5000);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
                 }
             }
 
@@ -339,16 +339,16 @@ public class ClassifyService {
     private void cal(Classifier classifier) {
         Map<String, Integer> m1 = new HashMap<String, Integer>();
         for (Flow flow : classifier.getOut()) {
-            if (flow.getTypeMap().size() == 0) {
+//            if (flow.getTypeMap().size() == 0) {
                 addMap(m1, flow.getType());
-            }
+//            }
         }
         Map<String, Integer> m2 = new HashMap<String, Integer>();
         for (String key : classifier.getIn().keySet()) {
             List list = classifier.getIn().get(key);
             for (int i = Constant.TRAINNUM; i < list.size(); i++) {
                 Flow flow = (Flow) list.get(i);
-                if (flow.getType().equals(key) && flow.getTypeMap().size() == 0) {
+                if (flow.getType().equals(key)) {
                     addMap(m2, key);
                     addMap(m1, key);
                 }
@@ -415,5 +415,17 @@ public class ClassifyService {
             e.printStackTrace();
         }
         System.out.println("写文件完成。");
+    }
+
+    private void saveModel(Classifier classifier){
+        //先保存分类器
+        for(String key :classifier.getIn().keySet()){
+            dao.saveClassifierIn(key,classifier.getIn().get(key));
+        }
+        //保存阈值
+        Map<String, Double> threshold = thresholds.get(classifier.getName());
+        for(String key : threshold.keySet()){
+            dao.saveThreshold(key,threshold.get(key));
+        }
     }
 }

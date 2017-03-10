@@ -14,6 +14,7 @@ public class Constant {
     public static final int NCLASS = 3;
     public static final int NNN = 600;
     public static final double FNUM = 19.0;
+    public static final double omg=0.4;
 
     public static int TRAINNUM = 800;
     public static final int TEST_START = 1300;
