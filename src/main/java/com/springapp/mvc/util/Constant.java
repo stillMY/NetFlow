@@ -21,4 +21,5 @@ public class Constant {
     public static final int TEST_END = 1500;
     public static boolean done = false;
     public static boolean Ac = false;
+    public static int Onum = 200;
 }

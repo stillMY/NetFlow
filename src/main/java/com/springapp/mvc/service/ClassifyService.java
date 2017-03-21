@@ -428,4 +428,13 @@ public class ClassifyService {
             dao.saveThreshold(key,threshold.get(key));
         }
     }
+
+//    private void update(){
+//        for(String key : flows.keySet()){
+//            List<Flow> flowList = flows.get(key);
+//            classifier.getIn().put(newType,  flowList);
+//            Double newThresholds = ClassifyUtil.getThreshold(flowList);
+//            thresholds.put(key,newThresholds);
+//        }
+//    }
 }

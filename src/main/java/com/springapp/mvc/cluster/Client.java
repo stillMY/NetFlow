@@ -1,6 +1,7 @@
 package com.springapp.mvc.cluster;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,23 +16,27 @@ public class Client {
         //ArrayList<Point> points = Data.generateSinData(200);
         //DBScan dbScan = new DBScan(0.6,4);
         //ArrayList<Point> points = Data.generateSpecialData();
-        boolean f = false;
+        boolean f = true;
 
         if (f) {
-            double radius = 0.9991;
-            int minPts = 10;
-            for (int i = minPts; i < 150; i += 10) {
-                for (double j = radius; j < 0.9998; j += 0.0002) {
+            double radius = 0.999;
+            int minPts = 1;
+            for (int i = minPts; i < 15; i += 2) {
+                for (double j = radius; j < 0.9999; j += 0.0001) {
                     List<Point> points = Data.loadFlow();
+                    List<Point> dataSet = new ArrayList<Point>();
+                    for(int x=0;x<200;x++){
+                        dataSet.add(points.get(x));
+                    }
                     DBScan dbScan = new DBScan(j, i);
-                    dbScan.process(points);
+                    dbScan.process(dataSet);
                     System.out.println("密度:" + i + "...半径：" + j);
                 }
             }
         } else {
             List<Point> points = Data.loadFlow();
 //            DBScan dbScan = new DBScan(0.99928, 50);
-            DBScan dbScan = new DBScan(0.9993, 40);
+            DBScan dbScan = new DBScan(0.999291, 20);
             dbScan.process(points);
 //        for (Point p : points) {
 //            System.out.println(p);

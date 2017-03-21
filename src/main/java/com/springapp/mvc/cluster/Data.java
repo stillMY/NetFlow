@@ -7,6 +7,7 @@ import java.io.*;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -94,13 +95,15 @@ public class Data {
 
     public static List<Point> loadFlow() {
         try {
-            FileInputStream fileInputStream = new FileInputStream(new File("c:/888类后200.csv"));
+//            FileInputStream fileInputStream = new FileInputStream(new File("C:\\888类后200.csv"));
+            FileInputStream fileInputStream = new FileInputStream(new File("C:\\Users\\Administrator\\Documents\\Tencent Files\\971266976\\FileRecv\\初始异常流量集.csv"));
             BufferedReader reader = new BufferedReader(new InputStreamReader(fileInputStream));
             String line;
             List<Point> list = new ArrayList<Point>();
             while ((line = reader.readLine()) != null) {
                 list.add(changeToFlow(line));
             }
+            Collections.shuffle(list);
             return list;
         } catch (Exception e) {
             e.printStackTrace();

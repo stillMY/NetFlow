@@ -37,7 +37,7 @@
     %>
 </head>
 <body>
-<div style="background-color: white;font-size: 17px">
+<div style="background-color: white;font-size: 19px">
     <div class="portlet box blue col-md-8">
         <div class="portlet-title">
             <div class="caption"><i class="fa fa-reorder"></i>流量分类页面</div>

@@ -2,14 +2,24 @@ package com.springapp.mvc.cluster;
 
 import com.springapp.mvc.util.Constant;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 /**
  * Created by Jason on 2016/4/17.
  */
-public class Point {
+public class Point implements Serializable{
     private double x;
     private double y;
+
+    public double[] getFeature() {
+        return feature;
+    }
+
+    public void setFeature(double[] feature) {
+        this.feature = feature;
+    }
+
     private double[] feature;
     private boolean isVisit;
     private int cluster;
@@ -23,7 +33,9 @@ public class Point {
     public void setType(String type) {
         this.type = type;
     }
+    public Point(){
 
+    }
     public Point(double x, double y) {
         this.x = x;
 
@@ -113,5 +125,32 @@ public class Point {
                 ", isNoised=" + isNoised +
                 ", type='" + type + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Point point = (Point) o;
+
+        if (Double.compare(point.x, x) != 0) return false;
+        if (Double.compare(point.y, y) != 0) return false;
+        if (!Arrays.equals(feature, point.feature)) return false;
+        return !(type != null ? !type.equals(point.type) : point.type != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        temp = Double.doubleToLongBits(x);
+        result = (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(y);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + Arrays.hashCode(feature);
+        result = 31 * result + (type != null ? type.hashCode() : 0);
+        return result;
     }
 }

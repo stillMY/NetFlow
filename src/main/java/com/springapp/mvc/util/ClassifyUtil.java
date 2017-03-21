@@ -4,6 +4,7 @@ import Tx.Tx;
 import com.mathworks.toolbox.javabuilder.MWClassID;
 import com.mathworks.toolbox.javabuilder.MWException;
 import com.mathworks.toolbox.javabuilder.MWNumericArray;
+import com.springapp.mvc.cluster.Point;
 import com.springapp.mvc.domain.Flow;
 
 import java.util.HashMap;
@@ -72,8 +73,9 @@ public class ClassifyUtil {
         return thresholds;
     }
 
-    public static Double getThreshold(List<Flow> data) {
-        double[][] d = getDoubleArr(data);
+    public static Double getThreshold(List<Point> data) {
+        tx = getInstance();
+        double[][] d = getDoubleArr2(data);
         MWNumericArray input = new MWNumericArray(d, MWClassID.DOUBLE);
         try {
             Object[] result = tx.getThreshold(1, data.size(), Constant.FNUM, input);
@@ -91,5 +93,24 @@ public class ClassifyUtil {
             dd[i] = d;
         }
         return dd;
+    }
+
+    private static double[][] getDoubleArr2(List<Point> flows) {
+        double[][] dd = new double[flows.size()][];
+        for (int i = 0; i < flows.size(); i++) {
+            double[] d = flows.get(i).getFeature();
+            dd[i] = d;
+        }
+        return dd;
+    }
+
+    public static double getPointXCo(Point point, List<Point> points) {
+        try {
+            Object[] result = tx.getFeature(1, point.getFeature(), getDoubleArr2(points), points.size(), Constant.FNUM);
+            return Double.parseDouble(result[0].toString());
+        } catch (MWException e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 }

@@ -86,8 +86,8 @@ public class DBScan {
 //                System.out.println(idx);
 //            }
         }
-        System.out.println("cluster:" + (cluster - 1));
-        System.out.println("噪声：" + noiseNum);
+        System.out.println("##########cluster:" + (cluster - 1));
+        System.out.println("##########噪声：" + noiseNum);
     }
 
     private ArrayList<Point> getAdjacentPoints(Point centerPoint, List<Point> points) {
@@ -99,6 +99,7 @@ public class DBScan {
 //                 System.out.println(distance);
 //            }
             if (distance > radius) {
+//                System.out.println(distance);
                 adjacentPoints.add(p);
             }
         }
