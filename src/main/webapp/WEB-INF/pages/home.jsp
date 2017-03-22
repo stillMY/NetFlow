@@ -29,7 +29,7 @@
 </head>
 <body style="font-size: 18px">
 <div style="height: 700px;width: 1200px;background-color: white">
-<div class="portlet box blue col-md-6" style="height: 400px;width: 800px;">
+<div class="portlet box blue col-md-6" style="height: 400px;width: 800px;margin-left: 50px;margin-top: 50px">
     <div class="portlet-title">
         <div class="caption"><i class="fa fa-reorder"></i>网络流量分类系统首页</div>
     </div>
@@ -47,18 +47,20 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="tab_1_1_1">
                     <p style="height: 200px;">
-                        我是一段文字介绍
+                        数据采集和处理页面主要包括采集数据页面和特征统计页面。<br/><br/>
+                        在采集数据页面点击开始采集按钮之后，系统会开始进行抓包。<br/><br/>
+                        点击停止抓包系统会把已抓到的包保存到pcap文件中，并显示在页面列表中。
                     </p>
-                    <a href="#" class="btn btn-lg green m-icon-big">数据采集和处理页面<i class="m-icon-big-swapright m-icon-white"></i></a>
+                    <a href="picker" class="btn btn-lg green m-icon-big">数据采集和处理页面<i class="m-icon-big-swapright m-icon-white"></i></a>
                 </div>
                 <div class="tab-pane" id="tab_1_1_2">
                     <p style="height: 200px;">分类介绍</p>
                     <%--<a href="#" class="btn btn-lg purple"><i class="fa fa-sitemap"></i>分类页面</a>--%>
-                    <a href="#" class="btn btn-lg purple m-icon-big">分类页面<i class="m-icon-big-swapright m-icon-white"></i></a>
+                    <a href="classifier" class="btn btn-lg purple m-icon-big">分类页面<i class="m-icon-big-swapright m-icon-white"></i></a>
                 </div>
                 <div class="tab-pane" id="tab_1_1_3">
                     <p style="height: 200px;">查看流量介绍</p>
-                    <a href="#" class="btn btn-lg red m-icon-big">查看所有流量页面<i class="m-icon-big-swapright m-icon-white"></i></a>
+                    <a href="index" class="btn btn-lg red m-icon-big">查看所有流量页面<i class="m-icon-big-swapright m-icon-white"></i></a>
                 </div>
             </div>
         </div>

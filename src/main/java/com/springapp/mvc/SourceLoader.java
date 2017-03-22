@@ -97,7 +97,9 @@ public class SourceLoader implements ApplicationListener<ContextRefreshedEvent> 
 
                     }
 //                }
-            });
+            })
+//                    .start()
+            ;
         }
     }
 

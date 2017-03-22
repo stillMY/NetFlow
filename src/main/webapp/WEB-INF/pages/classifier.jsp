@@ -37,8 +37,8 @@
     %>
 </head>
 <body>
-<div style="background-color: white;font-size: 19px">
-    <div class="portlet box blue col-md-8">
+<div style="background-color: white;font-size: 18px">
+    <div class="portlet box blue col-md-10" >
         <div class="portlet-title">
             <div class="caption"><i class="fa fa-reorder"></i>流量分类页面</div>
         </div>
@@ -49,7 +49,7 @@
                     <li><a href="#tab_1_1_2" data-toggle="tab">查看分类器阈值</a></li>
                     <li><a href="#tab_1_1_3" data-toggle="tab">新类型发现</a></li>
                 </ul>
-                <div class="tab-content" style="height: 555px;">
+                <div class="tab-content" style="height: 777px;">
                     <div class="tab-pane active" id="tab_1_1_1">
                         <table border="5px" cellpadding="12px" bgcolor="white" align="center">
                             <tr>
@@ -58,22 +58,22 @@
                                         <i class="fa fa-sitemap"></i>
 
                                         <p>分类器</p>
-                                        Classifier-21
+                                        Classifier-1
                                     </a>
 
-                                    <div class="col-md-6 col-sm-6" id="starBar" style="height: 200px;width: 350px">
+                                    <div class="col-md-6 col-sm-6" id="starBar" style="height: 300px;width: 500px">
                                     </div>
-                                    <p>分歧流量达到200，进行<a style="background-color: darkorange">新类型发现</a></p>
+                                    <p>异常流量达到200，进行<a style="background-color: darkorange">新类型发现</a></p>
                                 </td>
                                 <td>
                                     <a href="#" class="icon-btn pull-left" style="margin-top: 50px">
                                         <i class="fa fa-sitemap"></i>
 
                                         <p>分类器</p>
-                                        Classifier-22
+                                        Classifier-2
                                     </a>
 
-                                    <div class="col-md-6 col-sm-6" id="starBar1" style="height: 200px;width: 350px">
+                                    <div class="col-md-6 col-sm-6" id="starBar1" style="height: 300px;width: 500px">
                                     </div>
                                 </td>
                             </tr>
@@ -83,10 +83,10 @@
                                         <i class="fa fa-sitemap"></i>
 
                                         <p>分类器</p>
-                                        Classifier-24
+                                        Classifier-3
                                     </a>
 
-                                    <div class="col-md-6 col-sm-6" id="starBar3" style="height: 200px;width: 350px">
+                                    <div class="col-md-6 col-sm-6" id="starBar3" style="height: 300px;width: 500px">
                                     </div>
                                 </td>
                                 <td>
@@ -94,10 +94,10 @@
                                         <i class="fa fa-sitemap"></i>
 
                                         <p>分类器</p>
-                                        Classifier-25
+                                        Classifier-4
                                     </a>
 
-                                    <div class="col-md-6 col-sm-6" id="starBar4" style="height: 200px;width: 350px">
+                                    <div class="col-md-6 col-sm-6" id="starBar4" style="height: 300px;width: 500px">
                                     </div>
                                 </td>
                             </tr>
@@ -109,10 +109,10 @@
                                     </span>
                             </div>
                             &nbsp;
-                            <span class="pull-right">是否主动学习</span>
+                            <span class="pull-right" style="margin-right: 150px">是否主动学习</span>
                         </div>
                         <div>
-                            <span style="background-color: red;margin-left: 135px">
+                            <span style="background-color: red;margin-left: 150px">
                                 分类器数量达到上限，向管理员<a class="" data-toggle="modal" href="#basic">查询</a>!!!
                             </span>
                         </div>
@@ -135,31 +135,31 @@
                                         </thead>
                                         <tr>
                                             <td>P2P</td>
-                                            <td>0.8977</td>
+                                            <td>0.8929</td>
                                         </tr>
                                         <tr>
                                             <td>WWW</td>
-                                            <td>0.9725</td>
+                                            <td>0.9429</td>
                                         </tr>
                                         <tr>
                                             <td>DATABASE</td>
-                                            <td>0.9368</td>
+                                            <td>0.9286</td>
                                         </tr>
                                         <tr>
                                             <td>FTP-PASV</td>
-                                            <td>0.8979</td>
+                                            <td>0.9374</td>
                                         </tr>
                                         <tr>
                                             <td>SERVICES</td>
-                                            <td>0.9497</td>
+                                            <td>0.9528</td>
                                         </tr>
                                         <tr>
                                             <td>ATTACK</td>
-                                            <td>0.9312</td>
+                                            <td>0.9149</td>
                                         </tr>
                                         <tr>
                                             <td>FTP-CONTROL</td>
-                                            <td>0.978</td>
+                                            <td>0.9518</td>
                                         </tr>
                                         <tr>
                                             <td>FTP-DATA</td>
@@ -167,7 +167,7 @@
                                         </tr>
                                         <tr>
                                             <td>MAIL</td>
-                                            <td>0.9934</td>
+                                            <td>0.9914</td>
                                         </tr>
                                     </table>
                                 </td>
@@ -225,39 +225,39 @@
                                         </thead>
                                         <tr>
                                             <td>P2P</td>
-                                            <td>0.8977</td>
+                                            <td>0.8846</td>
                                         </tr>
                                         <tr>
                                             <td>WWW</td>
-                                            <td>0.9725</td>
+                                            <td>0.9619</td>
                                         </tr>
                                         <tr>
                                             <td>DATABASE</td>
-                                            <td>0.9368</td>
+                                            <td>0.933</td>
                                         </tr>
                                         <tr>
                                             <td>FTP-PASV</td>
-                                            <td>0.8979</td>
+                                            <td>0.8976</td>
                                         </tr>
                                         <tr>
                                             <td>SERVICES</td>
-                                            <td>0.9497</td>
+                                            <td>0.9464</td>
                                         </tr>
                                         <tr>
                                             <td>ATTACK</td>
-                                            <td>0.9312</td>
+                                            <td>0.9267</td>
                                         </tr>
                                         <tr>
                                             <td>FTP-CONTROL</td>
-                                            <td>0.978</td>
+                                            <td>0.9686</td>
                                         </tr>
                                         <tr>
                                             <td>FTP-DATA</td>
-                                            <td>0.9889</td>
+                                            <td>0.9968</td>
                                         </tr>
                                         <tr>
                                             <td>MAIL</td>
-                                            <td>0.9934</td>
+                                            <td>0.992</td>
                                         </tr>
                                     </table>
                                 </td>
@@ -270,39 +270,39 @@
                                         </thead>
                                         <tr>
                                             <td>P2P</td>
-                                            <td>0.8977</td>
+                                            <td>0.8953</td>
                                         </tr>
                                         <tr>
                                             <td>WWW</td>
-                                            <td>0.9725</td>
+                                            <td>0.944</td>
                                         </tr>
                                         <tr>
                                             <td>DATABASE</td>
-                                            <td>0.9368</td>
+                                            <td>0.9295</td>
                                         </tr>
                                         <tr>
                                             <td>FTP-PASV</td>
-                                            <td>0.8979</td>
+                                            <td>0.9376</td>
                                         </tr>
                                         <tr>
                                             <td>SERVICES</td>
-                                            <td>0.9497</td>
+                                            <td>0.9529</td>
                                         </tr>
                                         <tr>
                                             <td>ATTACK</td>
-                                            <td>0.9312</td>
+                                            <td>0.918</td>
                                         </tr>
                                         <tr>
                                             <td>FTP-CONTROL</td>
-                                            <td>0.978</td>
+                                            <td>0.9539</td>
                                         </tr>
                                         <tr>
                                             <td>FTP-DATA</td>
-                                            <td>0.9889</td>
+                                            <td>0.9958</td>
                                         </tr>
                                         <tr>
                                             <td>MAIL</td>
-                                            <td>0.9934</td>
+                                            <td>0.9915</td>
                                         </tr>
                                     </table>
                                 </td>
@@ -337,7 +337,7 @@
 
                 <div class="modal fade" id="basic" tabindex="-1" role="basic" aria-hidden="true">
                     <div class="modal-dialog pull-left">
-                        <div class="modal-content pull-left" style="width: 1500px">
+                        <div class="modal-content pull-left" style="width: 1600px">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                                 <h4 class="modal-title">分类器中的流量</h4>
@@ -353,7 +353,6 @@
                                             <thead>
                                             <tr>
                                                 <th>id</th>
-                                                <th>class</th>
                                                 <th>d1</th>
                                                 <th>d2</th>
                                                 <th>d3</th>
@@ -378,9 +377,6 @@
                                             <tbody>
                                             <tr>
                                                 <td>${list.get(0).id}</td>
-                                                <td><span
-                                                        class="label label-sm label-default">${list.get(0).type}</span>
-                                                </td>
                                                 <td>${list.get(0).d1}</td>
                                                 <td>${list.get(0).d2}</td>
                                                 <td>${list.get(0).d3}</td>
@@ -421,13 +417,10 @@
 <script src="js/echarts-2.2.7/src/echarts-all.js"></script>
 <script type="text/javascript">
     var starBar = echarts.init(document.getElementById('starBar'));
-    var starBar1 = echarts.init(document.getElementById('starBar1'));
-    var starBar3 = echarts.init(document.getElementById('starBar3'));
-    var starBar4 = echarts.init(document.getElementById('starBar4'));
     option = {
         title: {
             text: '分类器中各类数量',
-            x: 'right'
+            x: 'center'
         },
         tooltip: {
             trigger: 'item',
@@ -435,8 +428,8 @@
         },
         legend: {
             orient: 'vertical',
-            x: 'left',
-            data: ['SERVICES', 'DATABSE', 'FTP', 'MAIL', 'WWW']
+            x: 'right',
+            data: ['FTP-CONTROL','FTP-PASV','SERVICES', 'DATABASE', 'ATTACK','P2P','WWW','MAIL']
         },
         calculable: true,
         series: [
@@ -446,19 +439,177 @@
                 radius: '55%',
                 center: ['50%', '60%'],
                 data: [
-                    {value: 335, name: 'SERVICES'},
-                    {value: 310, name: 'DATABSE'},
-                    {value: 234, name: 'FTP'},
-                    {value: 135, name: 'MAIL'},
-                    {value: 1548, name: 'WWW'}
-                ]
+                    {value: 606, name: 'P2P'},
+                    {value: 528, name: 'WWW'},
+                    {value: 508, name: 'SERVICES'},
+                    {value: 557, name: 'DATABASE'},
+                    {value: 604, name: 'ATTACK'},
+                    {value: 557, name: 'FTP-CONTROL'},
+                    {value: 508, name: 'FTP-PASV'},
+                    {value: 522, name: 'MAIL'}
+                ],
+                itemStyle:{
+                    normal:{
+                        label:{
+                            show: true,
+                            formatter: '{b} : \n ({d}%)'
+                        },
+                        labelLine :{show:true}
+                    }
+                }
             }
         ]
     };
 
     starBar.setOption(option);
+</script>
+
+
+<script type="text/javascript">
+    var starBar1 = echarts.init(document.getElementById('starBar1'));
+    option = {
+        title: {
+            text: '分类器中各类数量',
+            x: 'center'
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            orient: 'vertical',
+            x: 'right',
+            data: ['FTP-CONTROL','FTP-PASV','SERVICES', 'DATABASE', 'ATTACK','P2P','WWW','MAIL']
+        },
+        calculable: true,
+        series: [
+            {
+                name: '类型',
+                type: 'pie',
+                radius: '55%',
+                center: ['50%', '60%'],
+                data: [
+                    {value: 610, name: 'P2P'},
+                    {value: 522, name: 'WWW'},
+                    {value: 512, name: 'SERVICES'},
+                    {value: 561, name: 'DATABASE'},
+                    {value: 600, name: 'ATTACK'},
+                    {value: 553, name: 'FTP-CONTROL'},
+                    {value: 508, name: 'FTP-PASV'},
+                    {value: 524, name: 'MAIL'}
+                ],
+                itemStyle:{
+                    normal:{
+                        label:{
+                            show: true,
+                            formatter: '{b} : \n ({d}%)'
+                        },
+                        labelLine :{show:true}
+                    }
+                }
+            }
+        ]
+    };
+
     starBar1.setOption(option);
+</script>
+
+<script type="text/javascript">
+    var starBar3 = echarts.init(document.getElementById('starBar3'));
+    option = {
+        title: {
+            text: '分类器中各类数量',
+            x: 'center'
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            orient: 'vertical',
+            x: 'right',
+            data: ['FTP-CONTROL','FTP-PASV','SERVICES', 'DATABASE', 'ATTACK','P2P','WWW','MAIL']
+        },
+        calculable: true,
+        series: [
+            {
+                name: '类型',
+                type: 'pie',
+                radius: '55%',
+                center: ['50%', '60%'],
+                data: [
+                    {value: 603, name: 'P2P'},
+                    {value: 530, name: 'WWW'},
+                    {value: 509, name: 'SERVICES'},
+                    {value: 557, name: 'DATABASE'},
+                    {value: 605, name: 'ATTACK'},
+                    {value: 560, name: 'FTP-CONTROL'},
+                    {value: 502, name: 'FTP-PASV'},
+                    {value: 526, name: 'MAIL'}
+                ],
+                itemStyle:{
+                    normal:{
+                        label:{
+                            show: true,
+                            formatter: '{b} : \n ({d}%)'
+                        },
+                        labelLine :{show:true}
+                    }
+                }
+            }
+        ]
+    };
+
     starBar3.setOption(option);
+
+</script>
+
+<script type="text/javascript">
+    var starBar4 = echarts.init(document.getElementById('starBar4'));
+    option = {
+        title: {
+            text: '分类器中各类数量',
+            x: 'center'
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            orient: 'vertical',
+            x: 'right',
+            data: ['FTP-CONTROL','FTP-PASV','SERVICES', 'DATABASE', 'ATTACK','P2P','WWW','MAIL']
+        },
+        calculable: true,
+        series: [
+            {
+                name: '类型',
+                type: 'pie',
+                radius: '55%',
+                center: ['50%', '60%'],
+                data: [
+                    {value: 604, name: 'P2P'},
+                    {value: 530, name: 'WWW'},
+                    {value: 509, name: 'SERVICES'},
+                    {value: 556, name: 'DATABASE'},
+                    {value: 606, name: 'ATTACK'},
+                    {value: 555, name: 'FTP-CONTROL'},
+                    {value: 500, name: 'FTP-PASV'},
+                    {value: 530, name: 'MAIL'}
+                ],
+                itemStyle:{
+                    normal:{
+                        label:{
+                            show: true,
+                            formatter: '{b} : \n ({d}%)'
+                        },
+                        labelLine :{show:true}
+                    }
+                }
+            }
+        ]
+    };
+
     starBar4.setOption(option);
 </script>
 

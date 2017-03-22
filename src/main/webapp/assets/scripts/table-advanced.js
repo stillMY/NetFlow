@@ -8,10 +8,10 @@ var TableAdvanced = function () {
             var aData = oTable.fnGetData( nTr );
             var sOut = '<table>';
             sOut += '<tr><td>Arrival Time: </td><td>'+'Feb 23, 2017 15:11:03.088224000'+'</td></tr>';
-            sOut += '<tr><td>Source Port: </td><td>'+80+'</td></tr>';
-            sOut += '<tr><td>Destination Port: </td><td>'+55618+'</td></tr>';
+            sOut += '<tr><td>Source Port: </td><td>'+50609+'</td></tr>';
+            sOut += '<tr><td>Destination Port: </td><td>'+20014+'</td></tr>';
             sOut += '<tr><td>Sequence number: </td><td>1</td></tr>';
-            sOut += '<tr><td>Next sequence number: </td><td>82</td></tr>';
+            sOut += '<tr><td>Next sequence number: </td><td>84</td></tr>';
             sOut += '<tr><td>Acknowledgment number: </td><td>1</td></tr>';
             sOut += '</table>';
              
@@ -45,7 +45,7 @@ var TableAdvanced = function () {
                 [5, 15, 20, -1],
                 [5, 15, 20, "All"] // change per page values here
             ],
-            // set the initial value
+             //set the initial value
             "iDisplayLength": 10,
         });
 

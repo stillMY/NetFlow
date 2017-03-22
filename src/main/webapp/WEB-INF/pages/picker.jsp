@@ -29,7 +29,7 @@
 </head>
 <body style="font-size: 18px">
 <div style="height: 700px;width: 1200px;background-color: white">
-<div class="portlet box blue col-md-12" style="height: 650px;width: 1000px;">
+<div class="portlet box blue col-md-12" style="height: 650px;width: 1000px;margin-top: 50px;margin-left: 50px">
     <div class="portlet-title">
         <div class="caption"><i class="fa fa-reorder"></i>数据采集</div>
     </div>
@@ -38,7 +38,7 @@
 
             <ul class="nav nav-tabs nav-justified">
                 <li class="active"><a href="#tab_1_1_1" data-toggle="tab">采集数据</a></li>
-                <li><a href="#tab_1_1_2" data-toggle="tab">还原流</a></li>
+                <%--<li><a href="#tab_1_1_2" data-toggle="tab">还原流</a></li>--%>
                 <li><a href="#tab_1_1_3" data-toggle="tab">特征统计</a></li>
             </ul>
             <div class="tab-content">
@@ -49,14 +49,15 @@
                     <span class="glyphicon glyphicon-play pull-right" style="height: 30px;font-size: 28px">开始采集</span>
                 </div>
 
-                <div class="tab-pane" id="tab_1_1_2">
-                    <iframe src="hy" width="100%" height="450px"></iframe>
-                    <span>共7个流</span>
-                </div>
+                <%--<div class="tab-pane" id="tab_1_1_2">--%>
+                    <%--<iframe src="hy" width="100%" height="450px"></iframe>--%>
+                    <%--<span>共7个流</span>--%>
+                <%--</div>--%>
 
                 <div class="tab-pane" id="tab_1_1_3">
                     <iframe src="index" width="100%" height="450px"></iframe>
-                    <span>共271个流</span>
+                    <span>共231个流</span>
+                    <span class="glyphicon glyphicon-play pull-right" style="height: 30px;font-size: 28px">生成特征集</span>
                 </div>
             </div>
         </div>

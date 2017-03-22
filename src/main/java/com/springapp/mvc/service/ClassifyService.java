@@ -60,7 +60,7 @@ public class ClassifyService {
 //                if (!flow.getType().equals(CLASS[0]) && !flow.getType().equals(CLASS[1]) && !flow.getType().equals(CLASS[2])) {
 //                    rightNum++;
 //                }
-                if (Constant.Ac == true && num % 100 == 0) {
+                if (Constant.Ac == true && num % 5 == 0) {
                     thresholds.put(key, ClassifyUtil.getThreshold(classifier.getIn()));//更新阈值
                 }
             } else if (com.size() == 1) {
@@ -80,7 +80,7 @@ public class ClassifyService {
                 flow.setTypeMap(map);
 
                 classifier.getIn().get(com.get(0)).add(flow);
-                if (num % 100 == 0 && Constant.Ac == true) {
+                if (num % 5 == 0 && Constant.Ac == true) {
                     thresholds.put(key, ClassifyUtil.getThreshold(classifier.getIn()));//更新阈值
                 }
 
@@ -104,7 +104,7 @@ public class ClassifyService {
                     names.add(classfierName);
 
                     classifiers.put(classfierName, newClassifier);
-                    if (num % 100 == 0 && Constant.Ac == true) {
+                    if (num % 5 == 0 && Constant.Ac == true) {
                         thresholds.put(classfierName, ClassifyUtil.getThreshold(classifier.getIn()));//更新阈值
 //                    }
 //                    if (num % 50 ==0) {
@@ -165,6 +165,7 @@ public class ClassifyService {
                 for (String key : sel.getTypeMap().keySet()) {
                     if (!sel.getType().equals(sel.getTypeMap().get(key)) && classifiers.size() > 1) {
                         classifiers.remove(key);
+                        thresholds.remove(key);
                     }
                 }
             }

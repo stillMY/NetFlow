@@ -49,6 +49,7 @@
                     <c:forEach items="${list}" var="flow">
                         <tr>
                             <td>${flow.id}</td>
+                            <td><span class="label label-sm label-success">${flow.type}</span></td>
                             <td>${flow.d1}</td>
                             <td>${flow.d2}</td>
                             <td>${flow.d3}</td>
@@ -68,7 +69,6 @@
                             <td>${flow.d17}</td>
                             <td>${flow.d18}</td>
                             <td>${flow.d19}</td>
-                            <td><span class="label label-sm label-success">${flow.type}</span></td>
                         </tr>
                     </c:forEach>
                     </tbody>
